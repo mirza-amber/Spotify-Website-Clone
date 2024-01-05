@@ -1,7 +1,12 @@
 console.log('Chalo Shuru Karte h!')
 
 
-// var naming_technique = ''
+var name_collection = []
+var name_list_1 = []
+var name_list_2 = []
+
+name_collection.push(name_list_1);
+name_collection.push(name_list_2);
 
 function timing(seconds) {
 
@@ -54,7 +59,6 @@ async function get_songs() {
     // console.log(a_collection[0]);
     // console.log(a_collection[1]);
 
-    naming_technique = ''
     song_list_1 = [];
     song_list_2 = [];
 
@@ -64,16 +68,19 @@ async function get_songs() {
 
     for (var indexila = 0; indexila < a_collection.length; indexila++) {
         const element = a_collection[indexila];
-        console.log(`this is ${indexila} index of `)
+        // console.log(`this is ${indexila} index of `)
 
         for (let i = 0; i < element.length; i++) {
+            
             const e1 = element[i]
-            // if (element[i].innerHTML.endsWith('.mp3')) {
-            //     naming_technique = naming_technique + `<li class="song_list_items list${index}">${a_collection[i].innerHTML.replace('.mp3', ' ')}</li>`
-            // }
+
+            if (element[i].innerHTML.endsWith('.mp3')) {
+                name_collection[indexila].push(e1.innerHTML);
+            }
+
             if (element[i].href.endsWith('.mp3')) {
                 
-                console.log(e1.href)
+                // console.log(e1.href)
                 real_song_list[indexila].push(e1.href);
             }
         }
@@ -89,17 +96,43 @@ async function get_songs() {
     //     }
     // }
 
-    return real_song_list;
+    badi_wali_list = []
+    // console.log(name_collection)
+    // return real_song_list;
+    badi_wali_list.push(real_song_list);
+    badi_wali_list.push(name_collection);
+    return badi_wali_list
 }
 
 
 async function main() {
-    var song_list_to_be_selected = await get_songs();
+    var function_ka_wait_kro = await get_songs()
+    var song_list_to_be_selected = function_ka_wait_kro[0]
+    var song_ki_name_list = function_ka_wait_kro[1]
     var man_ki_list = 0
     var songi = song_list_to_be_selected[man_ki_list]
     console.log(songi)
     var i = 0
     var voice = false
+
+    console.log(song_ki_name_list)
+
+    function name_allot(){
+            const ele = song_ki_name_list[man_ki_list];
+            console.log(ele)
+            
+            var list_filling = ''
+            for (let ind = 0; ind < ele.length; ind++) {
+                const songs_names_dispersed = ele[ind];
+                // console.log(songs_names_dispersed)
+                list_filling = list_filling + `<li class="song_list_items">${songs_names_dispersed.replaceAll('.mp3', '')}</li>`
+            }
+
+            // console.log(list_filling)
+            document.querySelector('.the_ul_list').innerHTML = `${list_filling}`
+    }
+
+    // name_allot()
     
 
     var audio = new Audio(songi[i]);
@@ -190,12 +223,19 @@ async function main() {
 
     function list_switch(list_number){
         pausing()
+        audio.pause();
+        audio.removeEventListener('timeupdate', updateTime);
         man_ki_list = (list_number);
         songi = song_list_to_be_selected[man_ki_list];
         console.log(songi)
         audio = new Audio(songi[i]);
-        audio.preload = 'auto';
-        playing()
+        audio.preload = 'auto';audio.addEventListener('canplay', function onCanPlay() {
+            audio.removeEventListener('canplay', onCanPlay);
+            playing();
+            audio.addEventListener('timeupdate', updateTime);
+        })
+        // playing()
+        name_allot()
     }
 
 
@@ -210,17 +250,19 @@ async function main() {
     audio.addEventListener('timeupdate',updateTime);
 
     
-    document.querySelector('.the_ul_list').innerHTML = `${naming_technique}`
+    // document.querySelector('.the_ul_list').innerHTML = `${naming_technique}`
     document.querySelector('.previous_waala_button').addEventListener('click', song_back);
     document.querySelector('.play_waala_button').addEventListener('click', playcheck);
     document.querySelector('.next_waala_button').addEventListener('click', song_skip);
     document.querySelector('.album_card1').addEventListener("click", ()=>{
         console.log('click is working');
         list_switch(0)
+        name_allot()
     })
     document.querySelector('.album_card2').addEventListener("click", ()=>{
         console.log('click is working');
         list_switch(1)
+        name_allot()
     })
 }
 
