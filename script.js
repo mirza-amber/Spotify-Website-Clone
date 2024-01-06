@@ -48,9 +48,9 @@ async function get_songs() {
 
     // let array_of_playlist = [response0, response1]
     let a_collection = []
-    
+
     for (let indexing = 0; indexing < response.length; indexing++) {
-        
+
         div_new = document.createElement('div');
         div_new.innerHTML = response[indexing];
         a_collection.push(div_new.getElementsByTagName('a'));
@@ -71,7 +71,7 @@ async function get_songs() {
         // console.log(`this is ${indexila} index of `)
 
         for (let i = 0; i < element.length; i++) {
-            
+
             const e1 = element[i]
 
             if (element[i].innerHTML.endsWith('.mp3')) {
@@ -79,22 +79,12 @@ async function get_songs() {
             }
 
             if (element[i].href.endsWith('.mp3')) {
-                
+
                 // console.log(e1.href)
                 real_song_list[indexila].push(e1.href);
             }
         }
     }
-    //     console.log(naming_technique)
-
-
-
-    // for (let index = 0; index < a_collection.length; index++) {
-    //     const element = a_collection[index];
-    //     if (element.href.endsWith('.mp3')) {
-    //         song_list.push(element.href);
-    //     }
-    // }
 
     badi_wali_list = []
     // console.log(name_collection)
@@ -112,37 +102,56 @@ async function main() {
     var man_ki_list = 0
     var songi = song_list_to_be_selected[man_ki_list]
     console.log(songi)
-    var i = Math.floor(Math.random()*songi.length)
+    var i = Math.floor(Math.random() * songi.length)
     console.log(i)
     // var i = 0
     var voice = false
 
     // console.log(song_ki_name_list)
 
-    function name_allot(){
-            const ele = song_ki_name_list[man_ki_list];
-            // console.log(ele)
-            
-            var list_filling = ''
-            for (let ind = 0; ind < ele.length; ind++) {
-                const songs_names_dispersed = ele[ind];
-                // console.log(songs_names_dispersed)
-                list_filling = list_filling + `<li class="song_list_items">${songs_names_dispersed.replaceAll('.mp3', '')}</li>`
-            }
+    function name_allot() {
+        const ele = song_ki_name_list[man_ki_list];
+        // console.log(ele)
 
-            // console.log(list_filling)
-            document.querySelector('.the_ul_list').innerHTML = `${list_filling}`
+        var list_filling = ''
+        for (let ind = 0; ind < ele.length; ind++) {
+            const songs_names_dispersed = ele[ind];
+            // console.log(songs_names_dispersed)
+            list_filling = list_filling + `<li class="song_list_items">${songs_names_dispersed.replaceAll('.mp3', '')}<img style="display: none;" src="audiowave.gif" alt=""></li>`
+        }
+
+        // console.log(list_filling)
+        document.querySelector('.the_ul_list').innerHTML = `${list_filling}`
     }
 
     name_allot()
 
-    function name_highlight(){
+    function make_list_clickable() {
+        for (let induindu = 0; induindu < songi.length; induindu++) {
+            document.querySelectorAll('.song_list_items')[induindu].addEventListener('click', () => {
+                document.querySelector('.the_ul_list').children[i].classList.remove('currentsong_highlighter');
+                pausing();
+                audio.removeEventListener('timeupdate', updateTime);
+                i = induindu
+                audio = new Audio(songi[i]);
+                audio.addEventListener('canplay', function onCanPlay() {
+                    audio.removeEventListener('canplay', onCanPlay);
+                    playing();
+                    audio.addEventListener('timeupdate', updateTime);
+                });
+            })
+        }
+    }
+
+    make_list_clickable()
+
+    function name_highlight() {
         document.querySelector('.the_ul_list').children[i].classList.add('currentsong_highlighter');
         document.querySelector('.current_song_box').innerHTML = document.querySelector('.the_ul_list').children[i].innerHTML;
     }
 
     // name_highlight()
-    
+
 
     var audio = new Audio(songi[i]);
     audio.preload = 'auto';
@@ -172,9 +181,9 @@ async function main() {
 
     function song_skip() {
         document.querySelector('.the_ul_list').children[i].classList.remove('currentsong_highlighter');
+        pausing();
+        audio.removeEventListener('timeupdate', updateTime);  // Remove existing timeupdate listener
         if (i != (songi.length - 1)) {
-            pausing();
-            audio.removeEventListener('timeupdate', updateTime);  // Remove existing timeupdate listener
             i = i + 1;
             audio = new Audio(songi[i]);
             audio.preload = 'auto';
@@ -184,8 +193,6 @@ async function main() {
                 audio.addEventListener('timeupdate', updateTime);  // Add a new timeupdate listener
             });
         } else if (i === (songi.length - 1)) {
-            pausing();
-            audio.removeEventListener('timeupdate', updateTime);
             i = 0;
             audio = new Audio(songi[i]);
             audio.preload = 'auto';
@@ -199,10 +206,10 @@ async function main() {
 
     function song_back() {
         document.querySelector('.the_ul_list').children[i].classList.remove('currentsong_highlighter')
+        pausing();
+        // audio.pause();
+        audio.removeEventListener('timeupdate', updateTime);
         if (i === 0) {
-            pausing();
-            audio.pause();
-            audio.removeEventListener('timeupdate', updateTime);
             i = songi.length;
             i = i - 1;
             audio = new Audio(songi[i]);
@@ -212,9 +219,6 @@ async function main() {
                 audio.addEventListener('timeupdate', updateTime);
             });
         } else if (i != 0) {
-            pausing();
-            audio.pause();
-            audio.removeEventListener('timeupdate', updateTime);
             i = i - 1;
             audio = new Audio(songi[i]);
             audio.addEventListener('canplay', function onCanPlay() {
@@ -233,51 +237,49 @@ async function main() {
         document.querySelector('.time_box').innerHTML = `${real_time} / ${duration_of_song}`;
     }
 
-    function list_switch(list_number){
+    function list_switch(list_number) {
         document.querySelector('.the_ul_list').children[i].classList.remove('currentsong_highlighter')  //Remove song highilight from current playlist
-        pausing()
-        audio.pause();
+        pausing();
+        // audio.pause();
         audio.removeEventListener('timeupdate', updateTime);
         man_ki_list = (list_number);
         songi = song_list_to_be_selected[man_ki_list];
         // console.log(songi)
         i = 0
         audio = new Audio(songi[i]);
-        audio.preload = 'auto';audio.addEventListener('canplay', function onCanPlay() {
+        audio.preload = 'auto'; audio.addEventListener('canplay', function onCanPlay() {
             audio.removeEventListener('canplay', onCanPlay);
             playing();
             audio.addEventListener('timeupdate', updateTime);
         })
-        // playing()
-        name_allot()
+        name_allot();
     }
 
 
-    audio.addEventListener('ended', ()=>{
-        console.log('YAYAYAYAYAY');
-    });
-    
+    audio.addEventListener('ended', song_skip);
+
     // audio.onended = function() {
     //     alert("The audio has ended");
     // };
 
-    audio.addEventListener('timeupdate',updateTime);
+    audio.addEventListener('timeupdate', updateTime);
 
-    
-    // document.querySelector('.the_ul_list').innerHTML = `${naming_technique}`
     document.querySelector('.previous_waala_button').addEventListener('click', song_back);
     document.querySelector('.play_waala_button').addEventListener('click', playcheck);
     document.querySelector('.next_waala_button').addEventListener('click', song_skip);
-    document.querySelector('.album_card1').addEventListener("click", ()=>{
+    document.querySelector('.album_card1').addEventListener("click", () => {
         console.log('click is working');
-        list_switch(0)
-        name_allot()
+        list_switch(0);
+        name_allot();
+        make_list_clickable();
     })
-    document.querySelector('.album_card2').addEventListener("click", ()=>{
+    document.querySelector('.album_card2').addEventListener("click", () => {
         console.log('click is working');
-        list_switch(1)
-        name_allot()
+        list_switch(1);
+        name_allot();
+        make_list_clickable();
     })
+    
 }
 
 main();

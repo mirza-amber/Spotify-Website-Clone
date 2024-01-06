@@ -128,7 +128,7 @@
 }
 .song_list_items{
     /* border: 2px solid red; */
-    height: 35px;
+    height: 38px;
     width: 90%;
     border-radius: 7px;
     padding: 0px 5px;
@@ -138,8 +138,10 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 14px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
+    cursor: pointer;
+    position: relative;
 }
 
 .currentsong_highlighter{
@@ -149,6 +151,16 @@
     background-color: rgba(255, 255, 255, 0.688);
     color: black;
     font-weight: 700;
+}
+
+.currentsong_highlighter img{
+    height: 500%;
+    width: 40%;
+    /* filter: invert(); */
+    filter: sepia(80%) contrast(200%) invert(71%) ;
+    display: block !important;
+    position: relative;
+    right: -6%;
 }
 
 .left_main .foot_info{
