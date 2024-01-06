@@ -115,11 +115,11 @@ async function main() {
     var i = 0
     var voice = false
 
-    console.log(song_ki_name_list)
+    // console.log(song_ki_name_list)
 
     function name_allot(){
             const ele = song_ki_name_list[man_ki_list];
-            console.log(ele)
+            // console.log(ele)
             
             var list_filling = ''
             for (let ind = 0; ind < ele.length; ind++) {
@@ -132,7 +132,18 @@ async function main() {
             document.querySelector('.the_ul_list').innerHTML = `${list_filling}`
     }
 
-    // name_allot()
+    name_allot()
+
+    function name_highlight(){
+        console.log(songi[i]);
+        console.log('Ye h')
+        console.log(song_ki_name_list[man_ki_list][i]);
+        document.querySelector('.the_ul_list').children[i].classList.add('currentsong_highlighter');
+        console.log(document.querySelector('.the_ul_list').children[i].className);
+        // console.log(document.querySelector('.the_ul_list').children[i].classList.remove('currentsong_highlighter'))
+    }
+
+    // name_highlight()
     
 
     var audio = new Audio(songi[i]);
@@ -143,6 +154,7 @@ async function main() {
         voice = true
         document.querySelector('.play_waala_button').innerHTML = '<img src="pause.svg" alt="">'
         // return('done')
+        name_highlight()
     }
 
     function pausing() {
@@ -161,6 +173,7 @@ async function main() {
     }
 
     function song_skip() {
+        console.log(document.querySelector('.the_ul_list').children[i].classList.remove('currentsong_highlighter'))
         if (i != (songi.length - 1)) {
             pausing();
             audio.removeEventListener('timeupdate', updateTime);  // Remove existing timeupdate listener
@@ -187,6 +200,7 @@ async function main() {
     }
 
     function song_back() {
+        console.log(document.querySelector('.the_ul_list').children[i].classList.remove('currentsong_highlighter'))
         if (i === 0) {
             pausing();
             audio.pause();
@@ -222,12 +236,14 @@ async function main() {
     }
 
     function list_switch(list_number){
+        console.log(document.querySelector('.the_ul_list').children[i].classList.remove('currentsong_highlighter'))
         pausing()
         audio.pause();
         audio.removeEventListener('timeupdate', updateTime);
         man_ki_list = (list_number);
         songi = song_list_to_be_selected[man_ki_list];
-        console.log(songi)
+        // console.log(songi)
+        i = 0
         audio = new Audio(songi[i]);
         audio.preload = 'auto';audio.addEventListener('canplay', function onCanPlay() {
             audio.removeEventListener('canplay', onCanPlay);

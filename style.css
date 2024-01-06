@@ -55,7 +55,6 @@
     align-items: center;
 }
 
-
 .spoti_logo > img{
     height: 25px;
     cursor: pointer;
@@ -129,8 +128,10 @@
 }
 .song_list_items{
     /* border: 2px solid red; */
-    height: auto;
-    width: 99%;
+    height: 35px;
+    width: 90%;
+    border-radius: 7px;
+    padding: 0px 5px;
     color: rgba(255, 255, 255, 0.599);
     background-color: rgba(41, 40, 40, 0.275);
     margin: 20px auto;
@@ -139,6 +140,15 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+.currentsong_highlighter{
+    /* background-color: red; */
+    /* border: 2px solid green; */
+    /* box-shadow: rgba(255, 255, 255, 0.25) 0px 0.0625em 0.0625em, rgba(255, 255, 255, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset; */
+    background-color: rgba(255, 255, 255, 0.688);
+    color: black;
+    font-weight: 700;
 }
 
 .left_main .foot_info{
