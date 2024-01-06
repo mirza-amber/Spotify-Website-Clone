@@ -394,14 +394,22 @@
     width: 100%;
     /* background-color: rgba(241, 137, 225, 0.238); */
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
 .current_song_box{
     height: 100%;
-    width: 15%;
+    width: 270px;
+    color: rgba(255, 255, 255, 0.704);
     /* background-color: darkcyan; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: Poppins;
+    font-size: 12px;
+    /* position: relative;
+    left: 2.8%; */
 }
 
 .playbar_buttons_container{
@@ -418,17 +426,17 @@
 
 .time_box{
     height: 100%;
-    width: 130px;
+    width: 270px;
     /* background-color: darkcyan; */
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: flex-end;
     /* text-align: center; */
     font-size: 16px;
     font-family: Poppins;
     color: white;
-    position: relative;
-    right: 2%;
+    /* position: relative;
+    right: 2%; */
 }
 
 .playbar_buttons_container button{
