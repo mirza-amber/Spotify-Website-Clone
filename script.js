@@ -161,7 +161,13 @@ async function main() {
         voice = true
         document.querySelector('.play_waala_button').innerHTML = '<img src="pause.svg" alt="">'
         // return('done')
-        name_highlight()
+        name_highlight();
+
+        audio.addEventListener('ended', ()=>{ // So if the playback ends while the audio loop is inside the play() function, ended event occurs here.
+            setTimeout(() => {
+                song_skip();
+            }, 1500);
+        }); 
     }
 
     function pausing() {
@@ -235,6 +241,8 @@ async function main() {
         var real_time = timing(audio.currentTime);
         var duration_of_song = timing(audio.duration);
         document.querySelector('.time_box').innerHTML = `${real_time} / ${duration_of_song}`;
+        // console.log(Math.floor((audio.currentTime/audio.duration)*100) + '%') // We can use this as well but because we are using Math.floor(), we will only be able to 'seek' songs at the percentage markers.
+        document.querySelector('.for_song_progress_show').style.width = (audio.currentTime/audio.duration)*100 + '%'
     }
 
     function list_switch(list_number) {
@@ -255,8 +263,12 @@ async function main() {
         name_allot();
     }
 
-
-    audio.addEventListener('ended', song_skip);
+    
+    // audio.addEventListener('ended', ()=>{
+    //     setTimeout(() => {
+    //         song_skip();
+    //     }, 1500);
+    // }); // So this ended event listener was not working, so somehow i figured the audio loop might be getting stuck inside the play() function when playback ends.
 
     // audio.onended = function() {
     //     alert("The audio has ended");

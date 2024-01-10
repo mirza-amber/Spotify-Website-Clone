@@ -388,11 +388,11 @@
 .right_main2_lower{
     background-color: rgba(28, 35, 27, 0.356);
     box-sizing: border-box;
-    border-radius: 15px;
-    height: 75px;
-    width: 90%;
+    border-radius: 20px;
+    height: 50px;
+    width: 93%;
     /* background-color: aqua; */
-    padding: 2px 8px;
+    /* padding: 2px 8px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -402,12 +402,24 @@
 }
 
 .playbar_buttons_and_time_container{
-    height: 58%;
+    /* height: 58%; When playstrip is active */
+    height: 100%;
     width: 100%;
     /* background-color: rgba(241, 137, 225, 0.238); */
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.for_song_progress_show{
+    background-color: rgba(35, 62, 40, 0.663);
+    /* border-right: 2px solid rgba(255, 255, 255, 0.24); */
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    /* transition: all ease 1s; */
 }
 
 .current_song_box{
@@ -419,7 +431,7 @@
     justify-content: flex-start;
     align-items: center;
     font-family: Poppins;
-    font-size: 12px;
+    font-size: 14px;
     /* position: relative;
     left: 2.8%; */
 }
@@ -442,9 +454,10 @@
     /* background-color: darkcyan; */
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
+    /* align-items: flex-end; To be activated only when playbar strip is active () */
+    align-items: center;
     /* text-align: center; */
-    font-size: 16px;
+    font-size: 14px;
     font-family: Poppins;
     color: white;
     /* position: relative;
@@ -461,7 +474,7 @@
 .playbar_previous{
     /* border: 2px solid green; */
     background-color: #121212;
-    border-radius: 46%;
+    border-radius: 20px;
     height: 35px;
     width: 38px;
     padding: 2px 0px 0px 0px;
@@ -472,7 +485,7 @@
 .playbar_play{
     /* border: 2px solid green; */
     background-color: #121212;
-    border-radius: 46%;
+    border-radius: 20px;
     height: 35px;
     width: 38px;
     padding: 2px 0px 0px 0px;
@@ -483,7 +496,7 @@
 .playbar_next{
     /* border: 2px solid green; */
     background-color: #121212;
-    border-radius: 46%;
+    border-radius: 20px;
     height: 35px;
     width: 38px;
     padding: 2px 0px 0px 0px;
@@ -514,21 +527,27 @@
 
 .strip_circle > img{
     /* border: 2px solid white; */
+    filter: invert(40%) sepia(50%);
+    height: 2.5vh;
+    width: 2.5vh;
+    z-index: 5;
+}
+
+.strip_circle{
+    /* border: 2px solid white; */
     height: 2.5vh;
     width: 2.5vh;
     position: absolute;
     z-index: 4;
     top: 2.5px;
-    left: 0;
+    left: 0%;
     cursor: pointer;
 }
 
 
-
-
-.right_main2_middle:hover{
+/* .right_main2_middle:hover{
     overflow: auto;
-}
+} */
 
 
 
