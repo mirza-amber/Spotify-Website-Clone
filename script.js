@@ -270,9 +270,6 @@ async function main() {
     //     }, 1500);
     // }); // So this ended event listener was not working, so somehow i figured the audio loop might be getting stuck inside the play() function when playback ends.
 
-    // audio.onended = function() {
-    //     alert("The audio has ended");
-    // };
 
     audio.addEventListener('timeupdate', updateTime);
 
@@ -290,6 +287,19 @@ async function main() {
         list_switch(1);
         name_allot();
         make_list_clickable();
+    })
+    document.querySelector('.playbar_strip').addEventListener('click', (e)=>{
+        console.log(e)
+        // console.log(e.target)
+        // console.log(e.currentTarget.id)
+        // console.log(e.target.getBoundingClientRect(), e.offsetX)
+        // console.log(e.target.getBoundingClientRect().width, e.offsetX)
+        // console.log(Math.floor((e.offsetX/e.target.getBoundingClientRect().width)*100) + '%')  // Had to drop (e.target) because this considers the element it is clicked on
+        document.querySelector('.for_song_progress_show').style.width = (Math.floor((e.offsetX/document.querySelector('.playbar_strip').getBoundingClientRect().width)*100) + '%')
+        let perrcent = Math.floor((e.offsetX/document.querySelector('.playbar_strip').getBoundingClientRect().width)*100)
+        // console.log(perrcent)
+        audio.currentTime = (perrcent * audio.duration)/ 100
+        playing();
     })
     
 }

@@ -389,7 +389,7 @@
     background-color: rgba(28, 35, 27, 0.356);
     box-sizing: border-box;
     border-radius: 20px;
-    height: 50px;
+    height: 60px;
     width: 93%;
     /* background-color: aqua; */
     /* padding: 2px 8px; */
@@ -411,16 +411,7 @@
     align-items: center;
 }
 
-.for_song_progress_show{
-    background-color: rgba(35, 62, 40, 0.663);
-    /* border-right: 2px solid rgba(255, 255, 255, 0.24); */
-    position: absolute;
-    z-index: -1;
-    left: 0;
-    width: 0%;
-    height: 100%;
-    /* transition: all ease 1s; */
-}
+
 
 .current_song_box{
     height: 100%;
@@ -459,14 +450,14 @@
     /* text-align: center; */
     font-size: 14px;
     font-family: Poppins;
-    color: white;
+    color: rgba(255, 255, 255, 0.704);
     /* position: relative;
     right: 2%; */
 }
 
 .playbar_buttons_container button{
     border: none;
-    filter: invert();
+    filter: invert() sepia(0%) grayscale(100%);
     text-decoration: none;
     cursor: pointer;
 }
@@ -507,17 +498,29 @@
 
 .playbar_strip{
     /* background-color: teal; */
-    height: 10%;
-    width: 95%;
+    height: 30%;
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: center;
     position: relative;
     z-index: 0;
-    padding: 1.3vh 0;
+    cursor: pointer;
 }
 
-.the_strip{
+.for_song_progress_show{
+    /* background-color: rgba(35, 62, 40, 0.663); */
+    background-color: #1ed75f7c;
+    /* border-right: 2px solid rgba(255, 255, 255, 0.24); */
+    position: relative;
+    z-index: -1;
+    left: 0;
+    width: 0%;
+    height: 15%;
+    /* transition: all ease 1s; */
+}
+
+/* .the_strip{
     border: 1.5px solid white;
     height:1.5px ;
     width: 98%;
@@ -526,7 +529,7 @@
 }
 
 .strip_circle > img{
-    /* border: 2px solid white; */
+    border: 2px solid white;
     filter: invert(40%) sepia(50%);
     height: 2.5vh;
     width: 2.5vh;
@@ -534,7 +537,7 @@
 }
 
 .strip_circle{
-    /* border: 2px solid white; */
+    border: 2px solid white;
     height: 2.5vh;
     width: 2.5vh;
     position: absolute;
@@ -542,7 +545,7 @@
     top: 2.5px;
     left: 0%;
     cursor: pointer;
-}
+} */
 
 
 /* .right_main2_middle:hover{
