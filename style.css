@@ -1,23 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
 
-.invert{
+.invert {
     filter: invert();
 }
 
-.main_container{
+.main_container {
     display: flex;
     gap: 0.5vw;
     padding: 5px;
     background-color: black;
 }
 
-.left_main{
+.left_main {
     /* border: 2px solid black; */
     border-radius: 5px;
     height: 98vh;
@@ -28,7 +28,7 @@
     justify-content: space-between;
 }
 
-.left_main1{
+.left_main1 {
     border-radius: 10px;
     border: 2px solid black;
     background-color: #121212;
@@ -39,45 +39,38 @@
     justify-content: space-around;
 }
 
-.spoti_logo{
+.spoti_logo {
     height: 35px;
 }
 
-.spoti_home{
-    height: 35px;
-    display: flex;
-    align-items: center;
-}
-
-.spoti_search{
+.spoti_home {
     height: 35px;
     display: flex;
     align-items: center;
 }
 
-.spoti_logo > img{
+.spoti_search {
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.spoti_logo>img {
     height: 25px;
     cursor: pointer;
 }
 
-.spoti_home > img{
+.spoti_home>img {
     height: 25px;
     cursor: pointer;
 }
 
-.spoti_search > img{
+.spoti_search>img {
     height: 25px;
     cursor: pointer;
 }
 
-.spoti_home > span{
-    margin: 0px 20px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    font-size: 16px;
-    cursor: pointer;
-}
-.spoti_search > span{
+.spoti_home>span {
     margin: 0px 20px;
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
@@ -85,14 +78,22 @@
     cursor: pointer;
 }
 
-.left_main2{
+.spoti_search>span {
+    margin: 0px 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.left_main2 {
     border-radius: 10px;
     border: 2px solid black;
     background-color: #121212;
     height: 72vh;
 }
 
-.left_main2 > .your_library{
+.left_main2>.your_library {
     /* border: 2px solid red; */
     height: 13%;
     margin: auto;
@@ -105,28 +106,30 @@
     color: white;
 }
 
-.your_library > img{
+.your_library>img {
     height: 25px;
     width: 25px;
     margin: 0px 20px;
     filter: invert();
 }
 
-.song_list{
+.song_list {
     /* border: 2px solid red; */
     height: 70%;
     width: 90%;
     margin: auto;
     overflow: hidden;
 }
-.song_list > ul{
+
+.song_list>ul {
     /* border: 2px solid red; */
     height: 99%;
     width: 99%;
     margin: auto;
     overflow: auto;
 }
-.song_list_items{
+
+.song_list_items {
     /* border: 2px solid red; */
     height: 38px;
     width: 90%;
@@ -144,7 +147,7 @@
     position: relative;
 }
 
-.currentsong_highlighter{
+.currentsong_highlighter {
     /* background-color: red; */
     /* border: 2px solid green; */
     /* box-shadow: rgba(255, 255, 255, 0.25) 0px 0.0625em 0.0625em, rgba(255, 255, 255, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset; */
@@ -153,17 +156,17 @@
     font-weight: 700;
 }
 
-.currentsong_highlighter img{
+.currentsong_highlighter img {
     height: 500%;
     width: 40%;
     /* filter: invert(); */
-    filter: sepia(80%) contrast(200%) invert(71%) ;
+    filter: sepia(80%) contrast(200%) invert(71%);
     display: block !important;
     position: relative;
     right: -6%;
 }
 
-.left_main .foot_info{
+.left_main .foot_info {
     /* border: 2px solid green; */
     height: 13%;
     width: 90%;
@@ -177,7 +180,7 @@
     color: rgb(211, 208, 208);
 }
 
-.foot_info > span{
+.foot_info>span {
     /* background-color: grey; */
     height: 20px;
     width: 60px;
@@ -185,7 +188,7 @@
     cursor: pointer;
 }
 
-.right_main{
+.right_main {
     border-radius: 10px;
     border: 2px solid black;
     background-color: #121212;
@@ -195,13 +198,15 @@
     width: 75vw;
 }
 
-.right_main1{
+.right_main1 {
     height: 10%;
-    width: 73.5vw;
+    /* width: 73.5vw; */
+    width: 100%;
+    /*  '%' unit is affected is position is set to "fixed", the An element with position: fixed; is positioned relative to the viewport */
     box-sizing: border-box;
-    margin: 0px 0px 10px 0px ;
+    margin: 0px 0px 10px 0px;
     border-radius: 10px;
-    position: fixed;
+    /* position: fixed; */
     z-index: 2;
     top: 10;
     /* background-color: burlywood; */
@@ -211,7 +216,7 @@
     padding: 10px 20px 0px 20px;
 }
 
-.nav_buttons{
+.nav_buttons {
     /* border: 2px solid blue; */
     height: 50px;
     width: 50%;
@@ -220,7 +225,15 @@
     align-items: center;
 }
 
-.nav_buttons > button{
+.hamburger {
+    width: 50px;
+    height: 50px;
+    filter: invert();
+    margin: 0px 20px 0px 0px;
+    display: none;
+}
+
+.nav_buttons > button {
     width: 30px;
     height: 30px;
     padding: 8px;
@@ -233,7 +246,7 @@
 }
 
 
-.login_signup{
+.login_signup {
     /* border: 2px solid blue; */
     height: 50px;
     width: 50%;
@@ -243,7 +256,7 @@
     color: white;
 }
 
-.login_signup  button{
+.login_signup button {
     height: 50px;
     width: 100px;
     border: none;
@@ -253,7 +266,7 @@
     cursor: pointer;
 }
 
-.logbut{
+.logbut {
     height: 50px;
     width: 100px;
     margin: 0 10px;
@@ -264,7 +277,7 @@
 
 }
 
-.signupbut{ 
+.signupbut {
     height: 50px;
     width: 100px;
     margin: 0 10px;
@@ -276,7 +289,7 @@
 
 }
 
-.right_main2{
+.right_main2 {
     height: 87vh;
     width: 100%;
     box-sizing: border-box;
@@ -291,7 +304,7 @@
     justify-content: flex-start;
 }
 
-.right_main2_upper{
+.right_main2_upper {
     height: 8%;
     width: 100%;
     box-sizing: border-box;
@@ -300,10 +313,10 @@
     padding: 10px 2%;
     font-family: Roboto;
     font-size: 80px;
-    font-weight:bolder;
+    font-weight: bolder;
 }
 
-.right_main2_upper div{
+.right_main2_upper div {
     background-color: rgba(28, 35, 28, 0.726);
     height: 180px;
     width: 1400px;
@@ -311,16 +324,16 @@
     color: rgba(92, 101, 92, 0.742);
     position: absolute;
     display: flex;
-    justify-content: flex-start ;
+    justify-content: flex-start;
     align-items: flex-end;
     left: -10px;
     top: -125px;
     font-family: Roboto;
     font-size: 84px;
-    font-weight:bolder;
+    font-weight: bolder;
 }
 
-.right_main2_middle{
+.right_main2_middle {
     background-color: #1d1d1d;
     box-sizing: border-box;
     height: 77%;
@@ -333,17 +346,17 @@
     overflow: auto;
 }
 
-.album_cards{
+.album_cards {
     height: 280px;
     width: 210px;
     /* width: 13.5vw; */
-    margin: 1% 2% 5% 3%;
+    margin: 1% auto 5% 3%;
     border-radius: 8px;
-    background-color:#181818;
+    background-color: #181818;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     padding: 1vh 0vh;
     gap: 5%;
     cursor: pointer;
@@ -353,39 +366,40 @@
     border: 2px solid green;
 } */
 
-.album_image{
+.album_image {
     /* background-color: aquamarine; */
     border-radius: 8px;
     height: 70%;
     width: 90%;
 }
 
-.album_image > img{
+.album_image>img {
     width: 100%;
     height: 100%;
     object-fit: fill;
 }
 
-.album_names{
+.album_names {
     /* background-color: rgb(127, 121, 119); */
     height: 24%;
     width: 90%;
 }
 
-.album_names > h3 {
+.album_names>h3 {
     font-family: Poppins;
     font-weight: bolder;
     font-size: 16px;
     color: white;
 }
-.album_names > h5 {
+
+.album_names>h5 {
     font-family: Poppins;
     font-weight: bolder;
     color: gray;
     font-size: 13px;
 }
 
-.right_main2_lower{
+.right_main2_lower {
     background-color: rgba(28, 35, 27, 0.356);
     box-sizing: border-box;
     border-radius: 20px;
@@ -401,7 +415,11 @@
     position: relative;
 }
 
-.playbar_buttons_and_time_container{
+.current_song_box2{
+    display: none;
+}
+
+.playbar_buttons_and_time_container {
     /* height: 58%; When playstrip is active */
     height: 100%;
     width: 100%;
@@ -413,7 +431,8 @@
 
 
 
-.current_song_box{
+.current_song_box {
+    padding: 0px 50px;
     height: 100%;
     width: 270px;
     color: rgba(255, 255, 255, 0.704);
@@ -427,7 +446,7 @@
     left: 2.8%; */
 }
 
-.playbar_buttons_container{
+.playbar_buttons_container {
     /* background-color: rgb(40, 30, 40); */
     height: 100%;
     width: 40%;
@@ -435,13 +454,14 @@
     justify-content: center;
     align-items: center;
     gap: 15px;
-    
+
     /* background: radial-gradient(circle, #1ed75fb4 0%, rgba(255, 255, 255, 0) 60%); */
 }
 
-.time_box{
+.time_box {
     height: 100%;
     width: 270px;
+    padding: 0px 50px;
     /* background-color: darkcyan; */
     display: flex;
     justify-content: flex-end;
@@ -455,36 +475,14 @@
     right: 2%; */
 }
 
-.playbar_buttons_container button{
+.playbar_buttons_container button {
     border: none;
     filter: invert() sepia(0%) grayscale(100%);
     text-decoration: none;
     cursor: pointer;
 }
 
-.playbar_previous{
-    /* border: 2px solid green; */
-    background-color: #121212;
-    border-radius: 20px;
-    height: 35px;
-    width: 38px;
-    padding: 2px 0px 0px 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.playbar_play{
-    /* border: 2px solid green; */
-    background-color: #121212;
-    border-radius: 20px;
-    height: 35px;
-    width: 38px;
-    padding: 2px 0px 0px 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.playbar_next{
+.playbar_previous {
     /* border: 2px solid green; */
     background-color: #121212;
     border-radius: 20px;
@@ -496,7 +494,31 @@
     align-items: center;
 }
 
-.playbar_strip{
+.playbar_play {
+    /* border: 2px solid green; */
+    background-color: #121212;
+    border-radius: 20px;
+    height: 35px;
+    width: 38px;
+    padding: 2px 0px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playbar_next {
+    /* border: 2px solid green; */
+    background-color: #121212;
+    border-radius: 20px;
+    height: 35px;
+    width: 38px;
+    padding: 2px 0px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playbar_strip {
     /* background-color: teal; */
     height: 30%;
     width: 100%;
@@ -508,7 +530,7 @@
     cursor: pointer;
 }
 
-.for_song_progress_show{
+.for_song_progress_show {
     /* background-color: rgba(35, 62, 40, 0.663); */
     background-color: #1ed75f7c;
     /* border-right: 2px solid rgba(255, 255, 255, 0.24); */
@@ -518,6 +540,102 @@
     width: 0%;
     height: 15%;
     /* transition: all ease 1s; */
+}
+
+
+@media (max-width: 1300px) {
+    .left_main {
+        /* border: 2px solid red; */
+
+        width: 40vw;
+        background-color: #1d1d1de2;
+        position: absolute;
+        left: -100%;
+        transition: all ease 0.5s;
+        position: absolute;
+        z-index: 10;
+    }
+
+    .right_main {
+        width: 100vw;
+    }
+
+    .hamburger {
+        display: inline-block;
+    }
+    
+    .album_card4{
+        margin-left: auto;
+    }
+}
+@media (max-width: 720px) {
+    .nav_buttons > button{
+        display: none;
+    }
+    .left_main {
+        /* border: 2px solid red; */
+
+        width: 60vw;
+        background-color: #1d1d1de2;
+        position: absolute;
+        left: -100%;
+        transition: all ease 0.5s;
+        position: absolute;
+        z-index: 10;
+    }
+
+    .right_main {
+        width: 100vw;
+    }
+
+    .right_main2_lower{
+        height: 90px;
+    }
+
+    .hamburger {
+        display: inline-block;
+    }
+
+    .current_song_box{
+        display: none;
+    }
+
+    .current_song_box2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color: blueviolet; */
+        background-color: #1d1d1d;
+        width: 100%;
+        height: 40%;
+        font-family: Poppins;
+        font-size: 11px;
+        color: white;
+        word-spacing: 10px;
+        letter-spacing: 2px;
+    }
+
+    .album_cards{
+        margin-left: auto;
+    }
+
+    .playbar_buttons_and_time_container{
+        justify-content: space-between;
+    }
+
+    .playbar_buttons_container{
+        /* background-color: aquamarine; */
+        width: 155px;
+    }
+
+    .time_box{
+        /* background-color: aqua; */
+        justify-content: center;
+        width: 110px;
+        padding: 0px 10px;
+    }
+
+
 }
 
 /* .the_strip{
@@ -556,27 +674,33 @@
 
 /* Customize the scrollbar track */
 ::-webkit-scrollbar {
-    width: 12px; /* Set the width of the scrollbar */
+    width: 12px;
+    /* Set the width of the scrollbar */
 }
 
 /* Customize the scrollbar thumb (the draggable handle) */
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(180, 179, 179, 0.29); /* Set the color of the scrollbar thumb */
-    border-radius: 4px; /* Round the corners of the scrollbar thumb */
+    background-color: rgba(180, 179, 179, 0.29);
+    /* Set the color of the scrollbar thumb */
+    border-radius: 4px;
+    /* Round the corners of the scrollbar thumb */
 }
 
 /* Customize the scrollbar track on the horizontal scrollbar */
 ::-webkit-scrollbar-track {
     border-radius: 4px;
-    background-color: transparent; /* Set the color of the scrollbar track */
+    background-color: transparent;
+    /* Set the color of the scrollbar track */
 }
 
 /* Customize the scrollbar corner where the vertical and horizontal scrollbars meet */
 ::-webkit-scrollbar-corner {
-    background-color: #000000; /* Set the color of the scrollbar corner */
+    background-color: #000000;
+    /* Set the color of the scrollbar corner */
 }
 
 /* Customize the scrollbar button (the arrows at the ends of the scrollbar) */
 ::-webkit-scrollbar-button {
-    display: none; /* Hide the scrollbar buttons */
+    display: none;
+    /* Hide the scrollbar buttons */
 }

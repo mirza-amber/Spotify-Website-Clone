@@ -105,7 +105,8 @@ async function main() {
     var i = Math.floor(Math.random() * songi.length)
     console.log(i)
     // var i = 0
-    var voice = false
+    var voice = false;
+    var hamburger_is_active = false
 
     // console.log(song_ki_name_list)
 
@@ -148,6 +149,7 @@ async function main() {
     function name_highlight() {
         document.querySelector('.the_ul_list').children[i].classList.add('currentsong_highlighter');
         document.querySelector('.current_song_box').innerHTML = document.querySelector('.the_ul_list').children[i].innerHTML;
+        document.querySelector('.current_song_box2').innerHTML = document.querySelector('.the_ul_list').children[i].innerHTML;
     }
 
     // name_highlight()
@@ -163,11 +165,11 @@ async function main() {
         // return('done')
         name_highlight();
 
-        audio.addEventListener('ended', ()=>{ // So if the playback ends while the audio loop is inside the play() function, ended event occurs here.
+        audio.addEventListener('ended', () => { // So if the playback ends while the audio loop is inside the play() function, ended event occurs here.
             setTimeout(() => {
                 song_skip();
             }, 1500);
-        }); 
+        });
     }
 
     function pausing() {
@@ -242,7 +244,7 @@ async function main() {
         var duration_of_song = timing(audio.duration);
         document.querySelector('.time_box').innerHTML = `${real_time} / ${duration_of_song}`;
         // console.log(Math.floor((audio.currentTime/audio.duration)*100) + '%') // We can use this as well but because we are using Math.floor(), we will only be able to 'seek' songs at the percentage markers.
-        document.querySelector('.for_song_progress_show').style.width = (audio.currentTime/audio.duration)*100 + '%'
+        document.querySelector('.for_song_progress_show').style.width = (audio.currentTime / audio.duration) * 100 + '%'
     }
 
     function list_switch(list_number) {
@@ -263,7 +265,7 @@ async function main() {
         name_allot();
     }
 
-    
+
     // audio.addEventListener('ended', ()=>{
     //     setTimeout(() => {
     //         song_skip();
@@ -271,7 +273,29 @@ async function main() {
     // }); // So this ended event listener was not working, so somehow i figured the audio loop might be getting stuck inside the play() function when playback ends.
 
 
+    
+
+    function hamburger_close(){
+        console.log('clickfire')
+        document.querySelector('.left_main').style.left = '-100%';
+        hamburger_is_active = false;
+        document.querySelector('.right_main').removeEventListener('click', hamburger_close)
+    }
+
     audio.addEventListener('timeupdate', updateTime);
+
+    document.querySelector('.hamburger').addEventListener('click', () => {
+        document.querySelector('.left_main').style.left = 0;
+        console.log('clicking')
+        hamburger_is_active = true
+        
+        setInterval(() => {
+            if (hamburger_is_active == true) {
+                document.querySelector('.right_main').addEventListener('click', hamburger_close)
+            }
+        }, 1000);
+    });
+
 
     document.querySelector('.previous_waala_button').addEventListener('click', song_back);
     document.querySelector('.play_waala_button').addEventListener('click', playcheck);
@@ -288,20 +312,20 @@ async function main() {
         name_allot();
         make_list_clickable();
     })
-    document.querySelector('.playbar_strip').addEventListener('click', (e)=>{
-        console.log(e)
+    document.querySelector('.playbar_strip').addEventListener('click', (e) => {
+        // console.log(e)
         // console.log(e.target)
         // console.log(e.currentTarget.id)
         // console.log(e.target.getBoundingClientRect(), e.offsetX)
         // console.log(e.target.getBoundingClientRect().width, e.offsetX)
         // console.log(Math.floor((e.offsetX/e.target.getBoundingClientRect().width)*100) + '%')  // Had to drop (e.target) because this considers the element it is clicked on
-        document.querySelector('.for_song_progress_show').style.width = (Math.floor((e.offsetX/document.querySelector('.playbar_strip').getBoundingClientRect().width)*100) + '%')
-        let perrcent = Math.floor((e.offsetX/document.querySelector('.playbar_strip').getBoundingClientRect().width)*100)
+        document.querySelector('.for_song_progress_show').style.width = (Math.floor((e.offsetX / document.querySelector('.playbar_strip').getBoundingClientRect().width) * 100) + '%')
+        let perrcent = Math.floor((e.offsetX / document.querySelector('.playbar_strip').getBoundingClientRect().width) * 100)
         // console.log(perrcent)
-        audio.currentTime = (perrcent * audio.duration)/ 100
+        audio.currentTime = (perrcent * audio.duration) / 100
         playing();
     })
-    
+
 }
 
 main();
