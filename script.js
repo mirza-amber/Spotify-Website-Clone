@@ -1,6 +1,3 @@
-console.log('Chalo Shuru Karte h!')
-
-
 var name_collection = []
 var name_list_1 = []
 var name_list_2 = []
